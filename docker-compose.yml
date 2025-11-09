@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  ngrok:
+    image: ngrok/ngrok:latest
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+      HTTP_PORT: ${HTTP_PORT}
+    ports:
+      - "4040:4040" # Ngrok web UI (optional)
+    command:
+      - "http"
+      - "host.docker.internal:${HTTP_PORT}"

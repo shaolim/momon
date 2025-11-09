@@ -1,6 +1,8 @@
 # momon
 
-simple money tracker.
+simple money tracker. using line money manager.
 
-- able to scan receipt
-- able to categorize spending or income
+MVP:
+
+- able to receive message and publish message to line chatbot
+- able to store user's expense and income data

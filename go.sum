@@ -1,7 +1,7 @@
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
-github.com/line/line-bot-sdk-go/v8 v8.17.0 h1:KMyDLXo3ni0iLCbvH1tU1y+OwWWLoM7bwvc3ywBAUjI=
-github.com/line/line-bot-sdk-go/v8 v8.17.0/go.mod h1:AeSRUuu7WGgveGDJb6DyKyFUOst2UB2aF6LO2cQeuXs=
+github.com/line/line-bot-sdk-go/v8 v8.18.0 h1:YbkGTFixMwTFtWhWwdu6lExbkuQGUCFHukLtC7YeMO4=
+github.com/line/line-bot-sdk-go/v8 v8.18.0/go.mod h1:AeSRUuu7WGgveGDJb6DyKyFUOst2UB2aF6LO2cQeuXs=
 github.com/openai/openai-go/v3 v3.7.0 h1:RrI3+tpwMUMsmh5nNnYEWT2lS9ojsQiWP7Fb30YQ50E=
 github.com/openai/openai-go/v3 v3.7.0/go.mod h1:UOpNxkqC9OdNXNUfpNByKOtB4jAL0EssQXq5p8gO0Xs=
 github.com/tidwall/gjson v1.14.2/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=

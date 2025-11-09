@@ -2,14 +2,11 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"github/shaolim/momon/internal/receipt"
+	"github/shaolim/momon/internal/messaging"
+	"github/shaolim/momon/pkg/server"
 	"log"
-	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/openai/openai-go/v3"
-	"github.com/openai/openai-go/v3/option"
 )
 
 func main() {
@@ -18,24 +15,17 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	openAIClient := openai.NewClient(option.WithAPIKey(os.Getenv("OPENAI_APIKEY")))
-	receipt := receipt.New(&openAIClient)
-
-	// Check if file path is provided as command-line argument
-	if len(os.Args) < 2 {
-		log.Fatal("Usage: go run main.go <path-to-receipt-image>")
-	}
-
-	filePath := os.Args[1]
-
-	// Verify file exists
-	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		log.Fatalf("File does not exist: %s", filePath)
-	}
-
-	res, err := receipt.ReadReceipt(context.Background(), filePath)
+	// Start the server
+	port := "8080"
+	log.Printf("Starting HTTP server on port %s...", port)
+	s, err := server.New(port)
 	if err != nil {
-		log.Fatalf("Error read receipt: %v", err)
+		log.Fatal("failed to initiate the server:", err)
 	}
-	fmt.Println(res.String())
+
+	m := messaging.New(nil)
+
+	if err := s.ServeHTTPHandler(context.Background(), m.Routes()); err != nil {
+		log.Fatal("Server failed to start:", err)
+	}
 }

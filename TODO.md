@@ -1,6 +1,5 @@
 # TODO
 
-- [ ] create project structure
-- [ ] connect to line
-- [ ] containerize
-- [ ] perform OCR on receipt
+- [x] create web server
+- [ ] make callback controller for line messaging api
+- [ ] send `TextMessage` to user when get message from user. (for testing)
