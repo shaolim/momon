@@ -6,17 +6,19 @@ import (
 )
 
 type messaging struct {
-	env *serverenv.ServerEnv
+	env    *serverenv.ServerEnv
+	config *Config
 }
 
-func New(env *serverenv.ServerEnv) *messaging {
+func New(config *Config, env *serverenv.ServerEnv) *messaging {
 	return &messaging{
-		env: env,
+		env:    env,
+		config: config,
 	}
 }
 
 func (m *messaging) Routes() http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/callback", m.Callback)
+	mux.HandleFunc("POST /callback", m.Callback)
 	return mux
 }

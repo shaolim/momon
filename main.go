@@ -3,10 +3,13 @@ package main
 import (
 	"context"
 	"github/shaolim/momon/internal/messaging"
+	"github/shaolim/momon/internal/serverenv"
 	"github/shaolim/momon/pkg/server"
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
+	messagingapi "github.com/line/line-bot-sdk-go/v8/linebot/messaging_api"
 )
 
 func main() {
@@ -23,7 +26,16 @@ func main() {
 		log.Fatal("failed to initiate the server:", err)
 	}
 
-	m := messaging.New(nil)
+	messagingConfig := messaging.NewConfig()
+
+	lineMessagingAPI, err := messagingapi.NewMessagingApiAPI(os.Getenv("LINE_CHANNEL_TOKEN"))
+	if err != nil {
+		log.Fatal("failed to initiate line messaging API", err)
+	}
+
+	senv := serverenv.New(serverenv.WithLineMessagingAPI(lineMessagingAPI))
+
+	m := messaging.New(messagingConfig, senv)
 
 	if err := s.ServeHTTPHandler(context.Background(), m.Routes()); err != nil {
 		log.Fatal("Server failed to start:", err)
