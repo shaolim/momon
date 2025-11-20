@@ -7,10 +7,10 @@ import (
 
 type messaging struct {
 	env    *serverenv.ServerEnv
-	config *Config
+	config *serverenv.Config
 }
 
-func New(config *Config, env *serverenv.ServerEnv) *messaging {
+func New(config *serverenv.Config, env *serverenv.ServerEnv) *messaging {
 	return &messaging{
 		env:    env,
 		config: config,

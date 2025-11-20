@@ -20,7 +20,7 @@ func (m *messaging) Callback(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	lineSignature := r.Header.Get("X-Line-Signature")
-	if !webhook.ValidateSignature(m.config.LineChannelSecret, lineSignature, body) {
+	if !webhook.ValidateSignature(m.config.Messaging.MessagingConfig().LineChannelSecret, lineSignature, body) {
 		slog.Error("invalid line signature", slog.String("signature", lineSignature))
 		w.WriteHeader(http.StatusOK)
 		return

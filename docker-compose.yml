@@ -11,3 +11,13 @@ services:
     command:
       - "http"
       - "host.docker.internal:${HTTP_PORT}"
+  postgres:
+    image: postgres:18.0
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: momon
+    volumes:
+      - ./db-data/:/var/lib/postgresql/18/data/

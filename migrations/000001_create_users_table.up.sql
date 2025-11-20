@@ -1,0 +1,16 @@
+BEGIN;
+
+CREATE TYPE UserStatus AS ENUM ('ACTIVE', 'INACTIVE');
+
+CREATE TABLE IF NOT EXISTS users(
+    id SERIAL PRIMARY KEY,
+    line_user_id VARCHAR(255) NOT NULL,
+    display_name VARCHAR(255) NOT NULL,
+    status UserStatus NOT NULL DEFAULT 'ACTIVE',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_line_user_id ON users(line_user_id);
+
+END;
